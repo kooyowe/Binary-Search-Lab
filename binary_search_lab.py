@@ -3,33 +3,45 @@ Binary search Lab wiritten by Kevin Oyowe
 October 12, 2016
 """
 class BinarySearch(list):
-    def __init__(self, a, b):
-        super(self.__class__, self).__init__(range(a))
-        self.length = a
-        self.step = b
- 
-    def __getitem__(self, index):
-        return (index + 1) * self.step
- 
-    def search(self, item):
- 
-        first = 0
-        last = self.length - 1
-        found = False
- 
-        index = -1
-        count = 0
- 
-        while first <= last and not found:
-            midpoint = (first + last) / 2
-            if self.__getitem__(midpoint) == item:
-                found = True
-                index = midpoint
+
+  def __init__(self, a, b): #Creates list of length a with steps of b between elements
+    self.a = a
+    self.b = b
+         
+    for i in range(self.a):
+      list.append(self, self.b)
+      self.b +=b
+      i +=1
+  
+    self.length = i
+
+  def search(self,value):
+    first = 0
+    last = self.length-1
+    found = False
+    count = 0
+    in_list = False
+    try:
+      index = self.index(value)
+      in_list = True
+    except ValueError:
+      index = -1
+      in_list = False
+
+    while first<=last and not found and in_list and value != self[last]:
+        midpoint = (first+last)//2
+        mid_value = self[midpoint]
+        if mid_value == value:
+            found = True
+            count +=1
+            index = midpoint
+        else:
+            if value < mid_value:
+                last = midpoint - 1
+                count +=1
             else:
-                if item < self.__getitem__(midpoint):
-                    last = midpoint - 1
-                else:
-                    first = midpoint + 1
-            count += 1
- 
-        return {"index": index, "count": count}
+                first = midpoint + 1
+                count +=1
+    
+    
+    return {"count": count, "index": index}
