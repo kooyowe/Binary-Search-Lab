@@ -1,2 +1,2 @@
 # Binary-Search-Lab
-Binary Search Lab for Andela Fellow Cohort X Bootcamp
+Implementing a binary search in Python
